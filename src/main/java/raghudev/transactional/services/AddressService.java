@@ -10,6 +10,8 @@ import raghudev.transactional.exception.ResourceNotFoundException;
 import raghudev.transactional.mappers.AddressMapper;
 import raghudev.transactional.repositories.AddressRepository;
 
+import java.time.Instant;
+
 @Service
 public class AddressService {
 
@@ -19,7 +21,7 @@ public class AddressService {
     public AddressDTO getAddress(@PathVariable Long id){
         AddressEntity addressEntity = addressRepository.findByAddressId(id);
         if(addressEntity == null){
-            throw new ResourceNotFoundException(System.currentTimeMillis(),"Address not found","/getEmployee/");
+            throw new ResourceNotFoundException(Instant.now(),"Address not found","/getEmployee/");
         }
         return AddressMapper.getAddressDTO(addressEntity);
     }
@@ -27,7 +29,7 @@ public class AddressService {
     public AddressDTO saveAddress(AddressDTO addressDTO){
         AddressEntity addressEntity = addressRepository.save(AddressMapper.getAddressEntity(addressDTO));
         if(addressEntity == null)
-            throw new DataPersistanceException(System.currentTimeMillis(),"Address not saved","/getEmployee/");
+            throw new DataPersistanceException(Instant.now(),"Address not saved","/getEmployee/");
         return AddressMapper.getAddressDTO(addressEntity);
     }
 }

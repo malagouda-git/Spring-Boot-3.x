@@ -12,7 +12,7 @@ import java.util.List;
 public class EmployeeEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
     private String name;
     private String email;
