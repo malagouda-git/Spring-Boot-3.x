@@ -2,6 +2,8 @@ package raghudev.transactional.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.antlr.v4.runtime.misc.NotNull;
+
 import java.util.List;
 
 @NoArgsConstructor
@@ -14,6 +16,7 @@ public class EmployeeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
+    @NotNull
     private String name;
     private String email;
     @OneToMany(targetEntity = AddressEntity.class, cascade = CascadeType.ALL)
