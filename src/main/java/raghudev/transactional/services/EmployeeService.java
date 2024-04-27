@@ -34,9 +34,9 @@ public class EmployeeService {
 
     @Transactional
     public EmployeeDTO saveEmployee(EmployeeDTO employeeDTO) {
-//        employeeDTO.setName(null);
+        //employeeDTO.setName(null);
         EmployeeEntity employeeEntity = employeeRepository.save(EmployeeMapper.getEmployeeEntity(employeeDTO));
-       /* if(employeeEntity.getName().equals("Ameeth")){
+        /*if(employeeEntity.getName().equals("Ameeth")){
             throw new DataPersistanceException(Instant.now(),"Error in Saving Employee","/saveEmployee");
         }*/
         EmployeeAuditEntity employeeAuditEntity = new EmployeeAuditEntity(null,employeeEntity.getEmployeeId(),employeeEntity.getName(), Instant.now());
