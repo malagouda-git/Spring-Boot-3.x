@@ -9,6 +9,7 @@ public class ResourceNotFoundException extends  RuntimeException{
     String path;
 
     public ResourceNotFoundException(Instant timestamp,String errorMessage, String path){
+        super(errorMessage);
         this.timestamp=timestamp;
         this.errorMessage=errorMessage;
         this.path=path;

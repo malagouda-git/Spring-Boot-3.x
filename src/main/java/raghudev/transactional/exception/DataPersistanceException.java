@@ -8,6 +8,7 @@ public class DataPersistanceException extends RuntimeException{
     String path;
 
     public DataPersistanceException(Instant timestamp, String errorMessage, String path) {
+        super(errorMessage);
         this.timestamp = timestamp;
         this.errorMessage = errorMessage;
         this.path = path;
