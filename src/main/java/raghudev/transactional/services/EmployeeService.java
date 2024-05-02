@@ -1,6 +1,8 @@
 package raghudev.transactional.services;
 
 import jakarta.transaction.Transactional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import raghudev.transactional.dtos.EmployeeDTO;
@@ -25,10 +27,14 @@ public class EmployeeService {
     @Autowired
     EmployeeAuditService employeeAuditService;
 
+    Logger logger = LoggerFactory.getLogger(EmployeeService.class);
+
     public EmployeeDTO getEmployee(Long id) {
+        logger.info("Inside getEmployee with id"+id);
         EmployeeEntity employeeEntity = employeeRepository.findByEmployeeId(id);
         if(employeeEntity==null)
             throw new ResourceNotFoundException(Instant.now(), "Employee not found","/getEmployee/");
+        logger.info("Employee found");
         return EmployeeMapper.getEmployeeDTO(employeeEntity);
     }
 

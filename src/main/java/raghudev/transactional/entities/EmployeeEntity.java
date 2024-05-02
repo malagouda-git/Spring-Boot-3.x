@@ -19,6 +19,7 @@ public class EmployeeEntity {
     @NotNull
     private String name;
     private String email;
+    private Double salary;
     @OneToMany(targetEntity = AddressEntity.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "employee_fk", referencedColumnName = "employeeId")
     private List<AddressEntity> address;

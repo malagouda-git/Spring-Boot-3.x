@@ -13,5 +13,6 @@ public class EmployeeDTO {
     private Long employeeId;
     private String name;
     private String email;
+    private double salary;
     private List<AddressEntity> address;
 }
