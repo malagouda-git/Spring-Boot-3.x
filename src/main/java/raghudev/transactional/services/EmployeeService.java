@@ -14,6 +14,8 @@ import raghudev.transactional.mappers.EmployeeMapper;
 import raghudev.transactional.repositories.EmployeeRepository;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EmployeeService {
@@ -48,5 +50,13 @@ public class EmployeeService {
         EmployeeAuditEntity employeeAuditEntity = new EmployeeAuditEntity(null,employeeEntity.getEmployeeId(),employeeEntity.getName(), Instant.now());
         employeeAuditService.saveEmployeeAudit(employeeAuditEntity);
         return EmployeeMapper.getEmployeeDTO(employeeEntity);
+    }
+
+    public List<EmployeeDTO> getAllEmployees() {
+        List<EmployeeEntity> employees = employeeRepository.findAll();
+        List<EmployeeDTO> employeeDTOS = employees.stream()
+                .map(employeeEntity -> EmployeeMapper.getEmployeeDTO(employeeEntity))
+                .collect(Collectors.toList());
+        return employeeDTOS;
     }
 }

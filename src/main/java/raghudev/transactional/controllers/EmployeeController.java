@@ -5,12 +5,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import raghudev.transactional.dtos.EmployeeDTO;
 import raghudev.transactional.services.EmployeeService;
+import java.util.List;
 
 @RestController
 public class EmployeeController {
 
     @Autowired
     EmployeeService employeeService;
+
+    @GetMapping("/getEmployee")
+    public ResponseEntity<List<EmployeeDTO>> getEmployees(){
+        return ResponseEntity.ok(employeeService.getAllEmployees());
+    }
 
     @GetMapping("/getEmployee/{empId}")
     public ResponseEntity<EmployeeDTO> getEmployee(@PathVariable Long empId){
