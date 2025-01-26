@@ -13,6 +13,11 @@ public class EmployeeController {
     @Autowired
     EmployeeService employeeService;
 
+    @GetMapping("/welcome")
+    public ResponseEntity welcome(){
+        return ResponseEntity.ok("Welcome to Employee Application");
+    }
+
     @GetMapping("/getEmployee")
     public ResponseEntity<List<EmployeeDTO>> getEmployees(){
         return ResponseEntity.ok(employeeService.getAllEmployees());
